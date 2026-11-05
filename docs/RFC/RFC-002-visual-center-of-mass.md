@@ -2,7 +2,7 @@
 
 - **Status**: Accepted / Implemented
 - **Authors**: Aether Perceptual Physics Working Group
-- **Target**: `@aether-ui/core-kernel`, `@aether-ui/browser-inspector`
+- **Target**: `@aether-kernel/core-kernel`, `@aether-kernel/browser-inspector`
 
 ## Context
 AI-generated frontends almost invariably produce center-aligned, symmetrical stacks:

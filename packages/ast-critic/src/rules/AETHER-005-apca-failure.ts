@@ -5,7 +5,7 @@
 
 import { ASTNode } from '../parsers/html-tailwind.js';
 import { CriticRuleResult } from './AETHER-001-pill-badge.js';
-import { calcAPCA, lookupMinLc } from '@aether-ui/core-kernel';
+import { calcAPCA, lookupMinLc } from '@aether-kernel/core-kernel';
 
 // Approximate hex mappings for Tailwind utility classes
 const TW_COLOR_MAP: Record<string, string> = {

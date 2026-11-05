@@ -37,10 +37,10 @@ jobs:
         run: pnpm --recursive run build
 
       - name: Verify APCA Math Matrix
-        run: pnpm --filter @aether-ui/core-kernel test
+        run: pnpm --filter @aether-kernel/core-kernel test
 
       - name: Run AST Critic Linter Specs
-        run: pnpm --filter @aether-ui/ast-critic test
+        run: pnpm --filter @aether-kernel/ast-critic test
 
       - name: Verify Human Benchmark Clean Pass
         run: node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-award-human-sites/ --strict

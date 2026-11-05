@@ -1,5 +1,5 @@
 {
-  "name": "@aether-ui/browser-inspector",
+  "name": "@aether-kernel/browser-inspector",
   "version": "1.0.0",
   "description": "Chrome and Firefox DevTools extension visualizing Visual Center of Mass (VCoM) and APCA contrast live",
   "type": "module",

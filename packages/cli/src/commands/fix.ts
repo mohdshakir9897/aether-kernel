@@ -5,7 +5,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fixSource } from '@aether-ui/ast-critic';
+import { fixSource } from '@aether-kernel/ast-critic';
 import { formatHeader, ANSI } from '../output/terminal-formatter.js';
 
 export async function runFix(args: { file?: string; targetDir?: string }): Promise<number> {

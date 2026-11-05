@@ -1,6 +1,6 @@
 # Perceptual Physics: Mathematical Proofs & Formalisms
 
-This document details the mathematical models and physics engines implemented in `@aether-ui/core-kernel`.
+This document details the mathematical models and physics engines implemented in `@aether-kernel/core-kernel`.
 
 ---
 

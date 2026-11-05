@@ -13,7 +13,7 @@ import {
   evaluateRenderedPhysics,
 } from '../src/index.js';
 
-console.log('🧪 Running @aether-ui/core-kernel hermetic tests...');
+console.log('🧪 Running @aether-kernel/core-kernel hermetic tests...');
 
 // 1. APCA Contrast Tests
 {
@@ -156,4 +156,4 @@ console.log('🧪 Running @aether-ui/core-kernel hermetic tests...');
   console.log('  ✓ Rendered spatial physics & slop discriminator validated');
 }
 
-console.log('🎉 All @aether-ui/core-kernel tests passed successfully!\n');
+console.log('🎉 All @aether-kernel/core-kernel tests passed successfully!\n');

@@ -1,6 +1,6 @@
 ---
 name: Domain Ontology Proposal
-about: Propose a new industry semantic model for @aether-ui/core-kernel
+about: Propose a new industry semantic model for @aether-kernel/core-kernel
 title: "[RFC-ONTOLOGY]: "
 labels: ["rfc", "ontology", "domain-kernel"]
 assignees: []

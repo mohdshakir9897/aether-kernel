@@ -2,7 +2,7 @@
 
 - **Status**: Accepted / Implemented
 - **Authors**: Aether Perceptual Physics Working Group
-- **Target**: `@aether-ui/core-kernel`
+- **Target**: `@aether-kernel/core-kernel`
 
 ## Context
 Legacy web design systems rely on sRGB or HSL color spaces and WCAG 2.1 relative luminance math ($CR = \frac{L_1 + 0.05}{L_2 + 0.05}$). WCAG 2.1 fails drastically with dark modes, saturated pure blues, and high-spatial-frequency typography because human lightness perception is non-linear and asymmetrical between dark-on-light and light-on-dark polarities.

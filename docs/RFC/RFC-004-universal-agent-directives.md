@@ -2,7 +2,7 @@
 
 - **Status**: Accepted / Implemented
 - **Authors**: Aether Agent Protocol WG
-- **Target**: `@aether-ui/agent-protocol`
+- **Target**: `@aether-kernel/agent-protocol`
 
 ## Context
 Linters can only operate after code has been generated. To solve aesthetic convergence at the source, AI coding agents must operate under systemic cognitive guardrails *prior* to token generation.

@@ -10,11 +10,11 @@ assignees: []
 A clear and concise description of what the bug is.
 
 ## Package Affected
-- [ ] `@aether-ui/core-kernel` (APCA, VCoM, chromatic budget, golden grid)
-- [ ] `@aether-ui/ast-critic` (AST parsing, rules, fixer)
-- [ ] `@aether-ui/agent-protocol` (Directives, adapters, prompt templates)
-- [ ] `@aether-ui/cli` (CLI commands, audit, fix, compile-tokens)
-- [ ] `@aether-ui/browser-inspector` (Extension, VCoM overlay, APCA HUD)
+- [ ] `@aether-kernel/core-kernel` (APCA, VCoM, chromatic budget, golden grid)
+- [ ] `@aether-kernel/ast-critic` (AST parsing, rules, fixer)
+- [ ] `@aether-kernel/agent-protocol` (Directives, adapters, prompt templates)
+- [ ] `@aether-kernel/cli` (CLI commands, audit, fix, compile-tokens)
+- [ ] `@aether-kernel/browser-inspector` (Extension, VCoM overlay, APCA HUD)
 
 ## Reproduction Steps
 1. Execute command: `...`

@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { lintSource } from '@aether-ui/ast-critic';
+import { lintSource } from '@aether-kernel/ast-critic';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

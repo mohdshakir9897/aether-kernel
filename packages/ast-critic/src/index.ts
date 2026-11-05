@@ -1,5 +1,5 @@
 /**
- * @aether-ui/ast-critic
+ * @aether-kernel/ast-critic
  * Multi-Framework Linter and Critic for Post-Cliché Human Interfaces
  */
 

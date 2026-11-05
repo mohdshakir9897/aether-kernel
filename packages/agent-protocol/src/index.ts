@@ -1,5 +1,5 @@
 /**
- * @aether-ui/agent-protocol
+ * @aether-kernel/agent-protocol
  * Universal directives and multi-platform adapters for AI coding agents
  */
 

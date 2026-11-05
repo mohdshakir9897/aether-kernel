@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import { validateLayoutGrammar, EBNF_GRAMMAR_DEFINITION } from '../src/index.js';
 
-console.log('🧪 Running @aether-ui/agent-protocol grammar tests...');
+console.log('🧪 Running @aether-kernel/agent-protocol grammar tests...');
 
 // 1. Verify EBNF Grammar definition exists
 assert(EBNF_GRAMMAR_DEFINITION.includes('RootLayout ::= HeaderContainer PrimarySplitView FooterContainer'));
@@ -54,4 +54,4 @@ assert.strictEqual(slopResult.isConforming, false, 'Generic slop should fail lay
 assert(slopResult.violations.length >= 4, 'Should flag multiple structural violations');
 console.log('  ✓ Generic AI slop correctly rejected by layout grammar');
 
-console.log('🎉 All @aether-ui/agent-protocol tests passed successfully!\n');
+console.log('🎉 All @aether-kernel/agent-protocol tests passed successfully!\n');

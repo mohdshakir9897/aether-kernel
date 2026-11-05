@@ -5,7 +5,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { lintSource, LintResult } from '@aether-ui/ast-critic';
+import { lintSource, LintResult } from '@aether-kernel/ast-critic';
 import { formatHeader, formatLintResult, formatSummary } from '../output/terminal-formatter.js';
 
 const EXTENSIONS = new Set(['.html', '.jsx', '.tsx', '.vue', '.svelte']);

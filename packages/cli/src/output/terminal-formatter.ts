@@ -2,7 +2,7 @@
  * Terminal Formatter for Aether UI CLI
  */
 
-import { LintResult } from '@aether-ui/ast-critic';
+import { LintResult } from '@aether-kernel/ast-critic';
 
 export const ANSI = {
   reset: '\x1b[0m',

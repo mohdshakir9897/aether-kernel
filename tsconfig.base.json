@@ -18,9 +18,9 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@aether-ui/core-kernel": ["packages/core-kernel/src/index.ts"],
-      "@aether-ui/ast-critic": ["packages/ast-critic/src/index.ts"],
-      "@aether-ui/agent-protocol": ["packages/agent-protocol/src/index.ts"]
+      "@aether-kernel/core-kernel": ["packages/core-kernel/src/index.ts"],
+      "@aether-kernel/ast-critic": ["packages/ast-critic/src/index.ts"],
+      "@aether-kernel/agent-protocol": ["packages/agent-protocol/src/index.ts"]
     }
   }
 }

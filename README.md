@@ -125,11 +125,11 @@ Aether Kernel natively injects directives and runtime hooks into your developmen
 
 For advanced customization and deep technical proofs:
 
-- [`@aether-ui/core-kernel`](packages/core-kernel): Pure mathematical physics engine (APCA, VCoM, golden grids, Shannon entropy, schema inference).
-- [`@aether-ui/ast-critic`](packages/ast-critic): Multi-framework AST parser (JSX, TSX, Vue, Svelte, Tailwind) and automated node patcher.
-- [`@aether-ui/agent-protocol`](packages/agent-protocol): Master agent system prompts, archetypes, and [EBNF Layout Grammar](packages/agent-protocol/grammars/layout-grammar.ebnf).
-- [`@aether-ui/cli`](packages/cli): Terminal auditor, auto-fixer, and token generator.
-- [`@aether-ui/browser-inspector`](packages/browser-inspector): Chrome & Firefox DevTools extension for live visual center of mass heatmaps.
+- [`@aether-kernel/core-kernel`](packages/core-kernel): Pure mathematical physics engine (APCA, VCoM, golden grids, Shannon entropy, schema inference).
+- [`@aether-kernel/ast-critic`](packages/ast-critic): Multi-framework AST parser (JSX, TSX, Vue, Svelte, Tailwind) and automated node patcher.
+- [`@aether-kernel/agent-protocol`](packages/agent-protocol): Master agent system prompts, archetypes, and [EBNF Layout Grammar](packages/agent-protocol/grammars/layout-grammar.ebnf).
+- [`@aether-kernel/cli`](packages/cli): Terminal auditor, auto-fixer, and token generator.
+- [`@aether-kernel/browser-inspector`](packages/browser-inspector): Chrome & Firefox DevTools extension for live visual center of mass heatmaps.
 - [`benchmarks`](benchmarks): Conformance test bench comparing 1,000 AI landing pages against human craft.
 
 ---

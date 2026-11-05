@@ -2,7 +2,7 @@
 
 - **Status**: Accepted / Implemented
 - **Authors**: Aether Tooling & Principles WG
-- **Target**: `@aether-ui/ast-critic`, `@aether-ui/cli`
+- **Target**: `@aether-kernel/ast-critic`, `@aether-kernel/cli`
 
 ## Context
 Across diverse foundation models (GPT-4, Claude 3.5, Gemini 1.5/2.0), web layout generation suffers from severe output convergence. Without strict counter-measures, models repeatedly generate:

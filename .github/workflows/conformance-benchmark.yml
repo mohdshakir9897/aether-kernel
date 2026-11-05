@@ -32,7 +32,7 @@ jobs:
         run: pnpm --recursive run build
 
       - name: Run Convergence & Human Delta Benchmark
-        run: pnpm --filter @aether-ui/benchmarks test
+        run: pnpm --filter @aether-kernel/benchmarks test
 
       - name: Upload Benchmark Results
         uses: actions/upload-artifact@v4

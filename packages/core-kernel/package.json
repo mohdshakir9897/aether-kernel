@@ -1,5 +1,5 @@
 {
-  "name": "@aether-ui/core-kernel",
+  "name": "@aether-kernel/core-kernel",
   "version": "1.0.0",
   "description": "Pure mathematical and perceptual physics engine for color, APCA contrast, visual tension, and spatial layout",
   "type": "module",

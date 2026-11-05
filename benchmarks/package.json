@@ -1,5 +1,5 @@
 {
-  "name": "@aether-ui/benchmarks",
+  "name": "@aether-kernel/benchmarks",
   "version": "1.0.0",
   "description": "Automated research suite measuring AI aesthetic convergence and statistical distance from human craft",
   "type": "module",
@@ -8,8 +8,8 @@
     "eval": "tsx runners/human-delta-evaluator.ts"
   },
   "dependencies": {
-    "@aether-ui/core-kernel": "workspace:*",
-    "@aether-ui/ast-critic": "workspace:*"
+    "@aether-kernel/core-kernel": "workspace:*",
+    "@aether-kernel/ast-critic": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.2"

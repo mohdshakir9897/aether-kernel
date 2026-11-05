@@ -20,10 +20,10 @@ importers:
 
   benchmarks:
     dependencies:
-      '@aether-ui/ast-critic':
+      '@aether-kernel/ast-critic':
         specifier: workspace:*
         version: link:../packages/ast-critic
-      '@aether-ui/core-kernel':
+      '@aether-kernel/core-kernel':
         specifier: workspace:*
         version: link:../packages/core-kernel
     devDependencies:
@@ -39,7 +39,7 @@ importers:
 
   packages/ast-critic:
     dependencies:
-      '@aether-ui/core-kernel':
+      '@aether-kernel/core-kernel':
         specifier: workspace:*
         version: link:../core-kernel
     devDependencies:
@@ -51,13 +51,13 @@ importers:
 
   packages/cli:
     dependencies:
-      '@aether-ui/agent-protocol':
+      '@aether-kernel/agent-protocol':
         specifier: workspace:*
         version: link:../agent-protocol
-      '@aether-ui/ast-critic':
+      '@aether-kernel/ast-critic':
         specifier: workspace:*
         version: link:../ast-critic
-      '@aether-ui/core-kernel':
+      '@aether-kernel/core-kernel':
         specifier: workspace:*
         version: link:../core-kernel
     devDependencies:

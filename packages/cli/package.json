@@ -1,5 +1,5 @@
 {
-  "name": "@aether-ui/cli",
+  "name": "@aether-kernel/cli",
   "version": "1.0.0",
   "description": "Global terminal & CI enforcement CLI for the Aether Kernel Protocol",
   "type": "module",
@@ -14,9 +14,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@aether-ui/core-kernel": "workspace:*",
-    "@aether-ui/ast-critic": "workspace:*",
-    "@aether-ui/agent-protocol": "workspace:*"
+    "@aether-kernel/core-kernel": "workspace:*",
+    "@aether-kernel/ast-critic": "workspace:*",
+    "@aether-kernel/agent-protocol": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.2"

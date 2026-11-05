@@ -1,5 +1,5 @@
 /**
- * @aether-ui/core-kernel
+ * @aether-kernel/core-kernel
  * Pure Mathematical and Perceptual Physics Engine
  */
 

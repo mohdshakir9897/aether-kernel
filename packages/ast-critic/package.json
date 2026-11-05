@@ -1,5 +1,5 @@
 {
-  "name": "@aether-ui/ast-critic",
+  "name": "@aether-kernel/ast-critic",
   "version": "1.0.0",
   "description": "Multi-framework AST linter and rewriter detecting algorithmic AI clichés and enforcing ergonomic human layout physics",
   "type": "module",
@@ -17,7 +17,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@aether-ui/core-kernel": "workspace:*"
+    "@aether-kernel/core-kernel": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.2"

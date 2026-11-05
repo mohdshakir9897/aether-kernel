@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import { lintSource, fixSource, evaluateRenderedPhysics } from '../src/index.js';
 
-console.log('🧪 Running @aether-ui/ast-critic hermetic tests...');
+console.log('🧪 Running @aether-kernel/ast-critic hermetic tests...');
 
 // 1. Detect AETHER-001: Floating Pill Badge
 {
@@ -102,4 +102,4 @@ console.log('🧪 Running @aether-ui/ast-critic hermetic tests...');
   console.log('  ✓ Pixel evaluator handles zero/negative area edge cases and VCoM slop thresholds');
 }
 
-console.log('🎉 All @aether-ui/ast-critic tests passed successfully!\n');
+console.log('🎉 All @aether-kernel/ast-critic tests passed successfully!\n');

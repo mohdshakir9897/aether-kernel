@@ -22,4 +22,4 @@ Provide representative snippets in JSX/Vue/Svelte/Tailwind:
 Explain the cognitive fatigue, information density collapse, visual misdirection, or accessibility failure caused by this pattern.
 
 ## Proposed Algorithmic Fix / Rewrite Strategy
-Describe how `@aether-ui/ast-critic` rewriter should transform this node into an asymmetrical, domain-accurate, or human-balanced design.
+Describe how `@aether-kernel/ast-critic` rewriter should transform this node into an asymmetrical, domain-accurate, or human-balanced design.

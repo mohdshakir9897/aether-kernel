@@ -5,7 +5,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { generateSemanticPalette } from '@aether-ui/core-kernel';
+import { generateSemanticPalette } from '@aether-kernel/core-kernel';
 import { formatHeader, ANSI } from '../output/terminal-formatter.js';
 
 export async function runCompileTokens(args: {
