@@ -1,11 +1,12 @@
 <div align="center">
 
-# ▲ AETHER UI
+# ▲ AETHER UI / AETHER KERNEL
 
 **Perceptual Physics, Anti-Convergence AST Linter, and Universal Agent Directives**  
 *Restoring scientific ergonomics, optical health, and post-cliché human craft to the synthetic software age.*
 
-[![CI](https://github.com/aether-ui/aether-ui/actions/workflows/ci-core-kernel.yml/badge.svg)](https://github.com/aether-ui/aether-ui/actions)
+[![CI Core Kernel](https://github.com/mohdshakir9897/aether-kernel/actions/workflows/ci-core-kernel.yml/badge.svg)](https://github.com/mohdshakir9897/aether-kernel/actions)
+[![Conformance Benchmark](https://github.com/mohdshakir9897/aether-kernel/actions/workflows/conformance-benchmark.yml/badge.svg)](https://github.com/mohdshakir9897/aether-kernel/actions)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![APCA Verified](https://img.shields.io/badge/APCA-W3C%20Silver%20Compliant-emerald.svg)](docs/PERCEPTUAL_PHYSICS.md)
 [![OKLCH Gamut](https://img.shields.io/badge/Color%20Space-OKLCH-f43f5e.svg)](docs/PERCEPTUAL_PHYSICS.md)
@@ -16,10 +17,10 @@
 
 ## ⚡ The Manifesto: Eradicating AI Aesthetic Slop
 
-Frontier large language models (GPT-4o, Claude 3.5 Sonnet, Gemini 2.0) are creating an unprecedented crisis of **aesthetic monoculture**. When prompted for web or product interfaces, autonomous models reliably regress to the statistical median of their training data, spewing identical tropes:
+Frontier large language models (GPT-4o, Claude 3.5 Sonnet, Gemini 2.0) are causing an acute crisis of **aesthetic monoculture**. When prompted for web or product interfaces, autonomous models reliably regress to the statistical median of their training weights, emitting the identical cliché template:
 
 ```
-❌ The Generic AI Cliché Monolith:
+❌ The Generic AI Cliché Monolith (BANNED):
 ┌────────────────────────────────────────────────────────┐
 │         [ Introducing v2.0 -> ]  <-- Floating Pill     │
 │                                                        │
@@ -29,17 +30,17 @@ Frontier large language models (GPT-4o, Claude 3.5 Sonnet, Gemini 2.0) are creat
 │                                                        │
 │  [  Feature 1  ]     [  Feature 2  ]     [ Feature 3 ] │
 │  (Identical Card)    (Identical Card)   (Identical Card)│
-│  Low contrast grey text that fails basic readability   │
+│  Low-contrast subtle grey text that flouts APCA minima │
 └────────────────────────────────────────────────────────┘
 ```
 
-This is not merely bad taste—it is **ocular and cognitive harm**:
-- **Retinal Fatigue**: Chromostereopsis induced by high-chroma opposite-wavelength saturated purple and cyan blur blobs causes continuous ciliary muscle strain.
-- **Cognitive Drift**: Dead-center vertical stacks ($\|\vec{T}_{\text{VCoM}}\| \approx 0$) fail to establish intentional focal hierarchy.
-- **Accessibility Failures**: Subtle dark-grey-on-black text regularly flouts W3C APCA legibility minimums ($L_c < 60$).
-- **Semantic Evaporation**: High-density domain ledgers and operational instrumentation are erased in favor of vacuous marketing copy.
+This represents quantifiable **ocular and cognitive degradation**:
+- **Retinal Fatigue & Accommodation Spasm**: Chromostereopsis induced by high-chroma opposite-wavelength saturated purple ($\approx 290^\circ$) and electric cyan ($\approx 180^\circ$) blur blobs forces continuous ocular focal oscillation.
+- **Cognitive Drift**: Dead-center vertical stacks ($\|\vec{T}_{\text{VCoM}}\| \approx 0$) lack intentional focal direction.
+- **Accessibility Failures**: Subtle dark-grey-on-black text regularly flouts W3C APCA legibility thresholds ($|L_c| < 60$).
+- **Affordance Collapse**: High-density operational ledgers and technical streams are erased in favor of vacuous marketing copy.
 
-**Aether UI replaces aesthetic slop with hermetic perceptual physics, deterministic AST linting, and universal agent directives.**
+**Aether Kernel replaces aesthetic slop with hermetic perceptual physics, deterministic AST linting, and universal agent directives.**
 
 ---
 
@@ -47,15 +48,17 @@ This is not merely bad taste—it is **ocular and cognitive harm**:
 
 ```mermaid
 flowchart TD
-    subgraph Engine ["1. @aether-ui/core-kernel"]
-        A1["APCA Contrast (W3C Silver)"]
+    subgraph Engine ["1. @aether-ui/core-kernel [Physics Engine]"]
+        A1["APCA Contrast (W3C Silver Lc)"]
         A2["OKLCH Non-linear Gamut"]
         A3["Visual Center of Mass (VCoM)"]
         A4["Golden Fibonacci Grid (1.618fr)"]
-        A5["Shannon Spatial Entropy"]
+        A5["Shannon Spatial Layout Entropy"]
+        A6["Rendered Slop Discriminator"]
+        A7["Telemetry Context Inference"]
     end
 
-    subgraph Critic ["2. @aether-ui/ast-critic"]
+    subgraph Critic ["2. @aether-ui/ast-critic [AST Linter]"]
         B1["AETHER-001 (Pill Badge)"]
         B2["AETHER-002 (Blur Blobs)"]
         B3["AETHER-003 (Uniform 3-Col)"]
@@ -64,12 +67,13 @@ flowchart TD
         B6["Automated AST Rewriter"]
     end
 
-    subgraph Directives ["3. @aether-ui/agent-protocol"]
-        C1["Gate 1: Socratic Friction"]
-        C2["Gate 2: Token Manifesto"]
-        C3["Gate 3: Spatial Composition"]
-        C4["Gate 4: Pre-Flight Self-Healing"]
-        C5["IDE & Model Adapters"]
+    subgraph Directives ["3. @aether-ui/agent-protocol [Grammar & Directives]"]
+        C1["layout-grammar.ebnf"]
+        C2["Gate 1: Socratic Friction"]
+        C3["Gate 2: Token Manifesto"]
+        C4["Gate 3: Spatial Composition"]
+        C5["Gate 4: Pre-Flight Self-Healing"]
+        C6["Multi-Platform Adapters"]
     end
 
     subgraph Delivery ["4. Enforcement & DevTools"]
@@ -79,29 +83,74 @@ flowchart TD
     end
 
     Engine --> Critic
+    Directives --> Critic
     Critic --> Delivery
     Directives --> Delivery
 ```
 
 ---
 
-## 📦 Packages in this Monorepo
+## 📦 Monorepo Packages
 
 | Package | Role | Key Capabilities |
 |:--------|:-----|:-----------------|
-| [`@aether-ui/core-kernel`](packages/core-kernel) | **Pure Math & Physics Engine** | APCA contrast ($L_c$), OKLCH palette derivation, VCoM vector physics ($\vec{R}_{cm}$), golden grid ($\phi$), Shannon entropy. |
-| [`@aether-ui/ast-critic`](packages/ast-critic) | **AST Linter & Auto-Fixer** | Multi-framework parser (JSX, Vue, Svelte, Tailwind) detecting clichés `AETHER-001` through `005` with AST recompilation. |
-| [`@aether-ui/agent-protocol`](packages/agent-protocol) | **Universal Directives & Adapters** | 4-Gate operational protocol and pre-configured adapters for Cursor, Windsurf, Copilot, Antigravity, Aider, Claude Code, Gemini, Grok, v0. |
-| [`@aether-ui/cli`](packages/cli) | **Terminal & CI Enforcement** | `npx aether-ui audit`, `fix`, `init`, and `compile-tokens`. |
-| [`@aether-ui/browser-inspector`](packages/browser-inspector) | **DevTools Extension** | Chrome/Firefox extension projecting live VCoM heatmaps and APCA contrast overlays over the DOM. |
+| [`@aether-ui/core-kernel`](packages/core-kernel) | **Pure Math & Physics Engine** | APCA contrast ($L_c$), OKLCH palette derivation, VCoM vector physics ($\vec{R}_{cm}$), golden grid ($\phi$), Shannon spatial entropy, rendered bounding box physics, telemetry context inference. |
+| [`@aether-ui/ast-critic`](packages/ast-critic) | **AST Linter & Auto-Fixer** | Multi-framework parser (JSX, TSX, Vue, Svelte, Tailwind) detecting clichés `AETHER-001` through `005` with automated AST node recompilation. |
+| [`@aether-ui/agent-protocol`](packages/agent-protocol) | **Universal Directives & Adapters** | Formal EBNF layout grammar, 4-Gate operational protocol, and adapters for Cursor, Windsurf, Copilot, Antigravity, Aider, Claude Code, Gemini, Grok, v0, and Bolt. |
+| [`@aether-ui/cli`](packages/cli) | **Terminal & CI Enforcement** | `npx aether-ui audit [path]`, `fix [path]`, `init`, and `compile-tokens`. |
+| [`@aether-ui/browser-inspector`](packages/browser-inspector) | **DevTools Extension** | Chrome/Firefox extension projecting live VCoM heatmaps and APCA contrast overlays directly over the browser viewport. |
 | [`benchmarks`](benchmarks) | **Research & Eval Suite** | Cosine similarity vectors & statistical distance benchmark measuring convergence across 1,000 AI sites vs human craft. |
+
+---
+
+## 📐 Perceptual Physics & Formal Grammar
+
+### 1. Formal Layout Grammar ([`layout-grammar.ebnf`](packages/agent-protocol/grammars/layout-grammar.ebnf))
+Aether enforces an explicit Extended Backus-Naur Form (EBNF) grammar that structurally eliminates generic center stacks:
+
+```ebnf
+RootLayout ::= HeaderContainer PrimarySplitView FooterContainer
+HeaderContainer ::= "<header " HeaderAttributes ">" (LeftAnchoredBrand NavList ContextualMetadata) "</header>"
+PrimarySplitView ::= "<main class=\"grid " AsymmetricGridColumns " gap-6\">" PrimaryCanvas SecondaryPanel "</main>"
+
+AsymmetricGridColumns ::= "grid-cols-1 lg:grid-cols-12" 
+PrimaryCanvas ::= "<section class=\"lg:col-span-8\">" (InteractiveDataSurface | StructuralViewport) "</section>"
+SecondaryPanel ::= "<aside class=\"lg:col-span-4\">" ContextualInspector "</aside>"
+```
+
+### 2. Rendered Spatial Physics & Mathematical Slop Discriminator
+Given rendered element bounding boxes $\{B_i\}$, Aether evaluates layout distribution:
+- **Spatial Shannon Entropy**:
+  $$H(X) = -\sum_{i=1}^N p_i \log_2(p_i), \quad p_i = \frac{\text{Area}_i}{\sum \text{Area}}$$
+- **Visual Center of Mass (VCoM) & Symmetry**:
+  $$\bar{x}_{\text{VCoM}} = \frac{\sum x_i \cdot \text{Area}_i}{\sum \text{Area}_i}, \quad S = \max(0, 1 - 2|\bar{x} - 0.5|)$$
+- **Slop Discriminator**:
+  $$\text{isSlop} = \left(S > 0.94 \land H(X) < 1.8 \land N \ge 3\right)$$
+- **Layout Energy Metric**:
+  $$E = S + \frac{1}{H(X) + 0.01}$$
+
+### 3. Accessible Perceptual Contrast Algorithm (APCA)
+APCA models human cone photoreceptors using non-linear power-law transformations with polarity-specific exponents:
+- **Positive Polarity (Dark on Light)**:
+  $$S_{\text{bg}} = Y_{\text{bg}}^{0.56}, \quad S_{\text{txt}} = Y_{\text{txt}}^{0.62} \implies L_c = (S_{\text{bg}} - S_{\text{txt}}) \cdot 1.14154 \cdot 100$$
+- **Negative Polarity (Light on Dark)**:
+  $$S_{\text{bg}} = Y_{\text{bg}}^{0.65}, \quad S_{\text{txt}} = Y_{\text{txt}}^{0.57} \implies L_c = (S_{\text{bg}} - S_{\text{txt}}) \cdot 1.14154 \cdot 100$$
+
+Mandatory contrast standards: $|L_c| \ge 60$ for standard body text, $|L_c| \ge 75$ for fine telemetry or code.
+
+### 4. Telemetry Context Inference
+The core kernel introspects workspace schemas without external dependencies:
+- **Prisma**: Models (`model <Name> {`)
+- **Drizzle**: Tables (`pgTable`, `sqliteTable`, `mysqlTable`)
+- **OpenAPI / JSON Schema**: Entity definitions
+- **Workspace Classifier**: Inferred domain (`high-precision-fintech`, `devtools-infra`, `editorial-luxury`, `general-b2b`) and density (`compact`, `balanced`, `editorial`).
 
 ---
 
 ## 🚀 Quickstart
 
 ### 1. Initialize Adapters in your Project
-Instantly inject `.cursorrules`, `.windsurfrules`, and `antigravity.json` into your local workspace:
+Inject `.cursorrules`, `.windsurfrules`, and `antigravity.json` into your local workspace:
 
 ```bash
 npx aether-ui init
@@ -111,7 +160,11 @@ npx aether-ui init
 Scan your frontend templates (JSX, TSX, Vue, Svelte, HTML) for clichés and low-contrast text:
 
 ```bash
+# Scan full repository
 npx aether-ui audit
+
+# Scan specific directory in strict mode
+npx aether-ui audit src/components/ --strict
 ```
 
 ### 3. Automatically Patch Layouts
@@ -130,29 +183,26 @@ npx aether-ui compile-tokens --hue 220 --mode dark --out src/tokens.css
 
 ---
 
-## 📐 Mathematical Foundations
+## 🛠️ CI & Conformance Verification
 
-### 1. Accessible Perceptual Contrast Algorithm (APCA)
-Unlike legacy WCAG 2.1 relative luminance math, APCA models human cone photoreceptors using non-linear power-law transformations with polarity-specific exponents:
-- **Positive Polarity (Dark on Light)**:
-  $$S_{\text{bg}} = Y_{\text{bg}}^{0.56}, \quad S_{\text{txt}} = Y_{\text{txt}}^{0.62}$$
-  $$L_c = (S_{\text{bg}} - S_{\text{txt}}) \cdot 1.14154 \cdot 100$$
-- **Negative Polarity (Light on Dark)**:
-  $$S_{\text{bg}} = Y_{\text{bg}}^{0.65}, \quad S_{\text{txt}} = Y_{\text{txt}}^{0.57}$$
-  $$L_c = (S_{\text{bg}} - S_{\text{txt}}) \cdot 1.14154 \cdot 100$$
+In `.github/workflows/ci-core-kernel.yml`, Aether executes hermetic verification:
+```yaml
+- name: Verify Human Benchmark Clean Pass
+  run: node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-award-human-sites/ --strict
 
-### 2. Visual Center of Mass (VCoM)
-Aether computes the mechanical centroid of optical mass across the viewport:
-$$\vec{R}_{\text{VCoM}} = \frac{\sum_{i=1}^N m_i \cdot \vec{r}_i}{\sum_{i=1}^N m_i}, \quad m_i = \text{Area}_i \cdot (\Delta L_i)^{1.25} \cdot (1 + 0.4 \kappa_i)$$
-Dynamic asymmetrical layouts maintain $0.08 \le \|\vec{T}\| \le 0.35$ relative to geometric center $(W/2, H/2)$.
-
-### 3. Golden Section Spatial Layout ($\phi \approx 1.618$)
-Standard uniform grids (`grid-cols-3`) collapse hierarchy. Aether enforces golden section partitions:
-$$\text{Major Section} = \frac{W}{\phi} \approx 61.8\% \cdot W, \quad \text{Minor Section} \approx 38.2\% \cdot W$$
+- name: Verify AI Slop Benchmark Is Successfully Flagged
+  run: |
+    if node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-ai-generated-sites/ --strict; then
+      echo "Error: AI Slop sample passed audit! Detector failed."
+      exit 1
+    else
+      echo "Success: AI Slop sample correctly flagged and blocked by Aether Kernel."
+    fi
+```
 
 ---
 
-## 🛡️ Governance & Alignment
+## 🛡️ Governance & Ethical Alignment
 
 - **Charter**: Formulated under the [Aether Open Governance Board](governance/CHARTER.md) (MIT CSAIL, Google AI Principles, W3C Silver contributors).
 - **Ethics & Safety**: Strict adherence to the [Ethics & Ergonomic Safety Policy](governance/ETHICS_SAFETY_POLICY.md).

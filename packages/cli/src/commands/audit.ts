@@ -10,12 +10,21 @@ import { formatHeader, formatLintResult, formatSummary } from '../output/termina
 
 const EXTENSIONS = new Set(['.html', '.jsx', '.tsx', '.vue', '.svelte']);
 
-function findTargetFiles(dir: string, fileList: string[] = []): string[] {
-  if (!fs.existsSync(dir)) return fileList;
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+function findTargetFiles(target: string, fileList: string[] = []): string[] {
+  if (!fs.existsSync(target)) return fileList;
+  const stat = fs.statSync(target);
+  if (stat.isFile()) {
+    const ext = path.extname(target).toLowerCase();
+    if (EXTENSIONS.has(ext)) {
+      fileList.push(target);
+    }
+    return fileList;
+  }
+
+  const entries = fs.readdirSync(target, { withFileTypes: true });
 
   for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
+    const fullPath = path.join(target, entry.name);
     if (entry.isDirectory()) {
       if (
         entry.name !== 'node_modules' &&
@@ -37,7 +46,7 @@ function findTargetFiles(dir: string, fileList: string[] = []): string[] {
 }
 
 export async function runAudit(args: { targetDir?: string; strict?: boolean }): Promise<number> {
-  const targetDir = args.targetDir || process.cwd();
+  const targetDir = args.targetDir ? path.resolve(args.targetDir) : process.cwd();
   console.log(formatHeader());
   console.log(`Scanning target: ${targetDir} ...\n`);
 
@@ -53,7 +62,7 @@ export async function runAudit(args: { targetDir?: string; strict?: boolean }): 
 
   for (const filePath of files) {
     const content = fs.readFileSync(filePath, 'utf-8');
-    const relPath = path.relative(targetDir, filePath);
+    const relPath = path.relative(process.cwd(), filePath);
     const result = lintSource(content, { filename: relPath });
 
     results.push(result);

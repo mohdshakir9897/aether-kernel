@@ -42,5 +42,14 @@ jobs:
       - name: Run AST Critic Linter Specs
         run: pnpm --filter @aether-ui/ast-critic test
 
-      - name: Execute Workspace Self-Audit
-        run: node packages/cli/dist/bin/aether.js audit --strict
+      - name: Verify Human Benchmark Clean Pass
+        run: node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-award-human-sites/ --strict
+
+      - name: Verify AI Slop Benchmark Is Successfully Flagged
+        run: |
+          if node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-ai-generated-sites/ --strict; then
+            echo "Error: AI Slop sample passed audit! Detector failed."
+            exit 1
+          else
+            echo "Success: AI Slop sample correctly flagged and blocked by Aether Kernel."
+          fi

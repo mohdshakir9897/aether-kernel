@@ -35,8 +35,9 @@ const flags = parseFlags(args.slice(1));
 async function main() {
   switch (command) {
     case 'audit': {
+      const positionalDir = args.slice(1).find((a) => !a.startsWith('--'));
       const code = await runAudit({
-        targetDir: typeof flags['dir'] === 'string' ? flags['dir'] : undefined,
+        targetDir: typeof flags['dir'] === 'string' ? flags['dir'] : positionalDir,
         strict: Boolean(flags['strict']),
       });
       process.exit(code);
@@ -44,8 +45,9 @@ async function main() {
     }
 
     case 'fix': {
+      const positionalFile = args.slice(1).find((a) => !a.startsWith('--'));
       const code = await runFix({
-        file: typeof flags['file'] === 'string' ? flags['file'] : undefined,
+        file: typeof flags['file'] === 'string' ? flags['file'] : positionalFile,
       });
       process.exit(code);
       break;
@@ -77,10 +79,10 @@ ${ANSI.bold}Usage:${ANSI.reset}
   npx aether-ui <command> [options]
 
 ${ANSI.bold}Commands:${ANSI.reset}
-  audit             Scans workspace for AI visual clichés & APCA contrast failures
+  audit [path]      Scans workspace or target directory for AI visual clichés & APCA contrast failures
                     Options: --dir <path>, --strict
 
-  fix               Automatically refactors AST nodes to remove clichés
+  fix [path]        Automatically refactors AST nodes to remove clichés
                     Options: --file <path>
 
   init              Injects Aether adapters (.cursorrules, .windsurfrules, antigravity.json)
