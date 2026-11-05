@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 /**
- * Aether UI CLI Entry Point
+ * Aether Kernel CLI Entry Point
  */
 
 import { runAudit } from '../src/commands/audit.js';
 import { runFix } from '../src/commands/fix.js';
+import { runWatch } from '../src/commands/watch.js';
 import { runInit } from '../src/commands/init.js';
 import { runCompileTokens } from '../src/commands/compile-tokens.js';
 import { ANSI } from '../src/output/terminal-formatter.js';
@@ -25,6 +26,9 @@ function parseFlags(rawArgs: string[]) {
       } else {
         flags[key] = true;
       }
+    } else if (arg.startsWith('-')) {
+      const key = arg.slice(1);
+      flags[key] = true;
     }
   }
   return flags;
@@ -35,7 +39,7 @@ const flags = parseFlags(args.slice(1));
 async function main() {
   switch (command) {
     case 'audit': {
-      const positionalDir = args.slice(1).find((a) => !a.startsWith('--'));
+      const positionalDir = args.slice(1).find((a) => !a.startsWith('-'));
       const code = await runAudit({
         targetDir: typeof flags['dir'] === 'string' ? flags['dir'] : positionalDir,
         strict: Boolean(flags['strict']),
@@ -45,11 +49,29 @@ async function main() {
     }
 
     case 'fix': {
-      const positionalFile = args.slice(1).find((a) => !a.startsWith('--'));
+      const positionalTarget = args.slice(1).find((a) => !a.startsWith('-'));
+      const target = typeof flags['file'] === 'string'
+        ? flags['file']
+        : typeof flags['dir'] === 'string'
+        ? flags['dir']
+        : positionalTarget;
+
+      const isDryRun = Boolean(flags['dry-run']);
+      const isWrite = Boolean(flags['write'] || flags['w'] || !isDryRun);
+
       const code = await runFix({
-        file: typeof flags['file'] === 'string' ? flags['file'] : positionalFile,
+        target,
+        dryRun: isDryRun,
+        write: isWrite,
       });
       process.exit(code);
+      break;
+    }
+
+    case 'watch': {
+      const positionalDir = args.slice(1).find((a) => !a.startsWith('-'));
+      const targetDir = typeof flags['dir'] === 'string' ? flags['dir'] : positionalDir;
+      await runWatch({ targetDir });
       break;
     }
 
@@ -73,17 +95,19 @@ async function main() {
     case '-h':
     case 'help': {
       console.log(`
-${ANSI.cyan}${ANSI.bold}Aether UI CLI${ANSI.reset} - Perceptual anti-convergence kernel and AST linter
+${ANSI.cyan}${ANSI.bold}Aether Kernel CLI${ANSI.reset} - Deterministic Interface Compiler & Spatial Physics Kernel
 
 ${ANSI.bold}Usage:${ANSI.reset}
-  npx aether-ui <command> [options]
+  npx aether-kernel <command> [target] [options]
 
 ${ANSI.bold}Commands:${ANSI.reset}
-  audit [path]      Scans workspace or target directory for AI visual clichés & APCA contrast failures
+  audit [path]      Scans workspace or target directory for AI visual clichés & APCA failures
                     Options: --dir <path>, --strict
 
-  fix [path]        Automatically refactors AST nodes to remove clichés
-                    Options: --file <path>
+  fix [path]        Recursively auto-patches AST nodes to human layout
+                    Options: --dry-run, --write (-w), --file <path>
+
+  watch [dir]       Runs daemon watching for AI agent edits and auto-patching instantaneously
 
   init              Injects Aether adapters (.cursorrules, .windsurfrules, antigravity.json)
 
@@ -98,7 +122,7 @@ ${ANSI.bold}Commands:${ANSI.reset}
 
     default: {
       console.error(`${ANSI.red}Unknown command:${ANSI.reset} ${command}`);
-      console.log('Run `npx aether-ui --help` for available commands.');
+      console.log('Run `npx aether-kernel --help` for available commands.');
       process.exit(1);
     }
   }
