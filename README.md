@@ -1,32 +1,80 @@
-# Aether Kernel (`aether-kernel`)
-> **Deterministic Interface Compiler & Spatial Physics Kernel for AI Coding Agents**
+<div align="center">
 
-[![CI Core Kernel](https://github.com/mohdshakir9897/aether-kernel/actions/workflows/ci-core-kernel.yml/badge.svg)](https://github.com/mohdshakir9897/aether-kernel/actions)
-[![Conformance Benchmark](https://github.com/mohdshakir9897/aether-kernel/actions/workflows/conformance-benchmark.yml/badge.svg)](https://github.com/mohdshakir9897/aether-kernel/actions)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![APCA Verified](https://img.shields.io/badge/APCA-W3C%20Silver%20Compliant-emerald.svg)](docs/PERCEPTUAL_PHYSICS.md)
-[![OKLCH Gamut](https://img.shields.io/badge/Color%20Space-OKLCH-f43f5e.svg)](docs/PERCEPTUAL_PHYSICS.md)
+# Aether Kernel
 
-Aether Kernel is an open-source layout compiler and spatial verification engine designed to eradicate **Algorithmic Aesthetic Convergence** ("AI UI Slop"). It enforces mathematical color physics (OKLCH/APCA), spatial entropy thresholds (Shannon Entropy), and AST layout grammars across autonomous AI coding workflows (Cursor, Windsurf, Antigravity, Claude Code, Copilot).
+**Stop your AI coding agents from generating identical, generic UI.**
 
----
+A zero-config tool and CLI that keeps Cursor, Windsurf, Claude Code, and Copilot aligned to human design standards—preventing purple blur blobs, repetitive 3-card grids, and AI template fatigue.
 
-## The Core Problem: Algorithmic Aesthetic Convergence
+[![CI Status](https://github.com/mohdshakir9897/aether-kernel/actions/workflows/ci-core-kernel.yml/badge.svg)](https://github.com/mohdshakir9897/aether-kernel/actions)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
 
-Generative LLMs sample code by maximizing token probability ($P(w_t \mid w_{<t})$). Because training sets are saturated with template-based frontend code, AI defaults to statistical medians:
-- Centered hero layouts with floating pill badges
-- Purple/violet decorative blur orbs (`blur-3xl bg-purple-500`)
-- Homogeneous 3-column feature grids with rounded icon boxes
-- Vacuous corporate buzzwords ("Supercharge your workflow")
+[Quickstart](#quickstart) • [How It Works](#how-it-works) • [Supported IDEs](#supported-ai-tools) • [Rules Caught](#what-it-detects) • [Architecture Docs](docs/)
 
-Aether Kernel replaces statistical guesswork with **perceptual color math and layout thermodynamics**.
+</div>
 
 ---
 
-## Architecture Overview
+## Why Aether Kernel?
+
+When modern AI coding assistants build web interfaces, token probability mechanics cause them to default to the same repetitive patterns:
+- Purple or neon-violet background glow blobs (`blur-3xl bg-purple-500`).
+- Centered hero headers with floating "Introducing 2.0" pill badges.
+- Identical 3-column card grids with icons in rounded boxes.
+- Generic corporate buzzwords ("Supercharge your workflow").
+
+**Aether Kernel connects directly to your AI IDE or CI pipeline.** It automatically audits your components, blocks generic template clichés, and guides your AI agent to build distinctive, human-grade UI tailored to your actual project.
+
+---
+
+## Quickstart
+
+### 1. Connect to Your AI Editor (10 Seconds)
+
+Inside your project root, run:
+
+```bash
+npx aether-kernel init
+```
+
+This immediately configures your AI workspace rules (`.cursorrules`, `.windsurfrules`, `antigravity.json`, and Copilot workspace instructions). Your agent will immediately cease outputting floating pill badges and generic purple blur templates.
+
+### 2. Audit Your Existing Components
+
+Scan your project for AI template convergence and low-contrast accessibility failures:
+
+```bash
+npx aether-kernel audit ./src --strict
+```
+
+### 3. Automatically Fix Violations
+
+Auto-patch detected clichés into domain-accurate, asymmetric layouts:
+
+```bash
+npx aether-kernel fix --file src/components/Hero.tsx
+```
+
+---
+
+## What It Detects
+
+Aether Kernel includes deterministic AST rules that catch AI design tropes before they reach production:
+
+| Rule | Targeted AI Cliché | Why It Matters |
+|:---|:---|:---|
+| **`AETHER-001`** | **Floating Hero Pill Badge** | Symmetrical centered pills (`rounded-full px-3 py-1`) waste prime optical real estate. |
+| **`AETHER-002`** | **Neon Blur Glow Blobs** | Decorative `blur-3xl` purple/cyan gradients induce chromostereopsis and rapid retinal fatigue. |
+| **`AETHER-003`** | **Homogeneous 3-Card Grids** | Cloned 3-column card grids collapse information hierarchy in complex software. |
+| **`AETHER-004`** | **Corporate Buzzword Fluff** | Replaces meaningless filler ("Supercharge your workflow") with measurable domain metrics. |
+| **`AETHER-005`** | **APCA Contrast Failures** | Replaces unreadable grey-on-dark text with verified W3C Silver APCA ($L_c \ge 75$) contrast tokens. |
+
+---
+
+## How It Works
 
 ```
-[ User Intent / Workspace AST ]
+[ User Prompt / Workspace AST ]
                │
                ▼
 ┌──────────────────────────────────────────────┐
@@ -53,119 +101,50 @@ Aether Kernel replaces statistical guesswork with **perceptual color math and la
 └──────────────────────────────────────────────┘
 ```
 
----
-
-## 📦 Monorepo Packages
-
-| Package | Role | Key Capabilities |
-|:--------|:-----|:-----------------|
-| [`@aether-ui/core-kernel`](packages/core-kernel) | **Pure Math & Physics Engine** | APCA contrast ($L_c$), OKLCH palette derivation, Visual Center of Mass ($\vec{R}_{cm}$), golden grid ($\phi$), Shannon spatial layout entropy, rendered bounding box physics, telemetry context inference. |
-| [`@aether-ui/ast-critic`](packages/ast-critic) | **AST Linter & Auto-Fixer** | Multi-framework parser (JSX, TSX, Vue, Svelte, Tailwind) detecting clichés `AETHER-001` through `005` with automated AST node recompilation and pixel evaluation. |
-| [`@aether-ui/agent-protocol`](packages/agent-protocol) | **Universal Directives & Adapters** | Formal EBNF layout grammar (`layout-grammar.ebnf`), 4-Gate operational protocol, and adapters for Cursor, Windsurf, Copilot, Antigravity, Aider, Claude Code, Gemini, Grok, v0, and Bolt. |
-| [`@aether-ui/cli`](packages/cli) | **Terminal & CI Enforcement** | `npx aether-kernel audit [path]`, `fix [path]`, `init`, and `compile-tokens`. |
-| [`@aether-ui/browser-inspector`](packages/browser-inspector) | **DevTools Extension** | Chrome/Firefox extension projecting live VCoM heatmaps and APCA contrast overlays directly over the browser viewport. |
-| [`benchmarks`](benchmarks) | **Research & Eval Suite** | Cosine similarity vectors & statistical distance benchmark measuring convergence across 1,000 AI sites vs human craft. |
+1. **Schema Context Ingestion**: Detects your actual domain (fintech, devtools, SCADA telemetry, editorial) by reading your Prisma, Drizzle, or OpenAPI definitions—no configuration required.
+2. **Perceptual Math**: Enforces human psychophysics (Accessible Perceptual Contrast Algorithm and OKLCH color gamut) rather than ad-hoc hex values.
+3. **Mathematical Layout Grammar**: Replaces symmetric center-stacks with an asymmetric golden-ratio 12-column grid (`lg:col-span-8` canvas + `lg:col-span-4` inspector).
+4. **Shannon Entropy Evaluator**: Measures spatial distribution entropy $H(X)$ to mathematically distinguish artisan craft from generic AI clustering.
 
 ---
 
-## 📐 Mathematical Foundations
+## Supported AI Tools
 
-### 1. Accessible Perceptual Contrast Algorithm (APCA)
-APCA models human cone photoreceptors using non-linear power-law transformations with polarity-specific exponents:
-- **Positive Polarity (Dark on Light)**:
-  $$S_{\text{bg}} = Y_{\text{bg}}^{0.56}, \quad S_{\text{txt}} = Y_{\text{txt}}^{0.62} \implies L_c = (S_{\text{bg}} - S_{\text{txt}}) \cdot 1.14154 \cdot 100$$
-- **Negative Polarity (Light on Dark)**:
-  $$S_{\text{bg}} = Y_{\text{bg}}^{0.65}, \quad S_{\text{txt}} = Y_{\text{txt}}^{0.57} \implies L_c = (S_{\text{bg}} - S_{\text{txt}}) \cdot 1.14154 \cdot 100$$
+Aether Kernel natively injects directives and runtime hooks into your development environment:
 
-Mandatory contrast standards: $|L_c| \ge 60$ for standard body text, $|L_c| \ge 75$ for fine telemetry or code.
-
-### 2. Rendered Spatial Physics & Mathematical Slop Discriminator
-Given rendered element bounding boxes $\{B_i\}$, Aether evaluates layout thermodynamics:
-- **Spatial Shannon Entropy**:
-  $$H(X) = -\sum_{i=1}^N p_i \log_2(p_i), \quad p_i = \frac{\text{Area}_i}{\sum \text{Area}}$$
-- **Visual Center of Mass (VCoM) & Horizontal Symmetry**:
-  $$\bar{x}_{\text{VCoM}} = \frac{\sum x_i \cdot \text{Area}_i}{\sum \text{Area}_i}, \quad S = \max(0, 1 - 2|\bar{x} - 0.5|)$$
-- **Slop Discriminator**:
-  $$\text{isSlop} = \left(S > 0.94 \land H(X) < 1.8 \land N \ge 3\right)$$
-- **Layout Energy Metric**:
-  $$E = S + \frac{1}{H(X) + 0.01}$$
-
-### 3. Formal Layout Grammar ([`layout-grammar.ebnf`](packages/agent-protocol/grammars/layout-grammar.ebnf))
-Aether enforces an explicit Extended Backus-Naur Form (EBNF) grammar that structurally eliminates generic center stacks:
-
-```ebnf
-RootLayout ::= HeaderContainer PrimarySplitView FooterContainer
-HeaderContainer ::= "<header " HeaderAttributes ">" (LeftAnchoredBrand NavList ContextualMetadata) "</header>"
-PrimarySplitView ::= "<main class=\"grid " AsymmetricGridColumns " gap-6\">" PrimaryCanvas SecondaryPanel "</main>"
-
-AsymmetricGridColumns ::= "grid-cols-1 lg:grid-cols-12" 
-PrimaryCanvas ::= "<section class=\"lg:col-span-8\">" (InteractiveDataSurface | StructuralViewport) "</section>"
-SecondaryPanel ::= "<aside class=\"lg:col-span-4\">" ContextualInspector "</aside>"
-```
-
-### 4. Telemetry Context Inference
-The core kernel introspects workspace schemas without external dependencies:
-- **Prisma**: Models (`model <Name> {`)
-- **Drizzle**: Tables (`pgTable`, `sqliteTable`, `mysqlTable`)
-- **OpenAPI / JSON Schema**: Entity definitions
-- **Workspace Classifier**: Inferred domain (`high-precision-fintech`, `devtools-infra`, `editorial-luxury`, `general-b2b`) and density (`compact`, `balanced`, `editorial`).
+- **Cursor**: Generates `.cursorrules`
+- **Windsurf**: Generates `.windsurfrules`
+- **GitHub Copilot**: Generates `.github/copilot-instructions.md`
+- **Google Antigravity**: Lifecycle hooks in `antigravity.json`
+- **Claude Code**: Tool execution in `claude-code.json`
+- **Aider & Cline**: Integrated system directives
 
 ---
 
-## 🚀 Quickstart
+## Monorepo Architecture
 
-### 1. Install & Run Audit
-```bash
-npx aether-kernel audit ./src --strict
-```
+For advanced customization and deep technical proofs:
 
-### 2. Automatically Patch Layouts
-Automatically refactor uniform grids, eliminate blur blobs, upgrade low-contrast tokens, and replace corporate buzzwords with domain-accurate metrics:
-```bash
-npx aether-kernel fix --file src/components/Hero.tsx
-```
-
-### 3. Initialize Agent Directives & Adapters
-Inject `.cursorrules`, `.windsurfrules`, and `antigravity.json` into your local workspace:
-```bash
-npx aether-kernel init
-```
-
-### 4. Compile Perceptual OKLCH CSS Variables
-Generate mathematically harmonious CSS design tokens anchored to an OKLCH hue angle:
-```bash
-npx aether-kernel compile-tokens --hue 220 --mode dark --out src/tokens.css
-```
+- [`@aether-ui/core-kernel`](packages/core-kernel): Pure mathematical physics engine (APCA, VCoM, golden grids, Shannon entropy, schema inference).
+- [`@aether-ui/ast-critic`](packages/ast-critic): Multi-framework AST parser (JSX, TSX, Vue, Svelte, Tailwind) and automated node patcher.
+- [`@aether-ui/agent-protocol`](packages/agent-protocol): Master agent system prompts, archetypes, and [EBNF Layout Grammar](packages/agent-protocol/grammars/layout-grammar.ebnf).
+- [`@aether-ui/cli`](packages/cli): Terminal auditor, auto-fixer, and token generator.
+- [`@aether-ui/browser-inspector`](packages/browser-inspector): Chrome & Firefox DevTools extension for live visual center of mass heatmaps.
+- [`benchmarks`](benchmarks): Conformance test bench comparing 1,000 AI landing pages against human craft.
 
 ---
 
-## 🛠️ CI & Conformance Verification
+## Deep Technical Proofs
 
-In `.github/workflows/ci-core-kernel.yml`, Aether executes hermetic verification:
-```yaml
-- name: Verify Human Benchmark Clean Pass
-  run: node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-award-human-sites/ --strict
-
-- name: Verify AI Slop Benchmark Is Successfully Flagged
-  run: |
-    if node packages/cli/dist/bin/aether.js audit benchmarks/datasets/1000-ai-generated-sites/ --strict; then
-      echo "Error: AI Slop sample passed audit! Detector failed."
-      exit 1
-    else
-      echo "Success: AI Slop sample correctly flagged and blocked by Aether Kernel."
-    fi
-```
+Looking for the underlying mathematical derivations?
+- [Perceptual Physics & APCA Contrast Proofs](docs/PERCEPTUAL_PHYSICS.md)
+- [Visual Center of Mass (VCoM) Vector Mathematics](docs/RFC/RFC-002-visual-center-of-mass.md)
+- [Google AI Principles Alignment](docs/AI_PRINCIPLES_ALIGNMENT.md)
+- [Adapter Integration Guide](docs/ADAPTER_INTEGRATION_GUIDE.md)
+- [Open Governance Charter](governance/CHARTER.md)
 
 ---
 
-## 🛡️ Governance & Ethical Alignment
+## License
 
-- **Charter**: Formulated under the [Aether Open Governance Board](governance/CHARTER.md) (MIT CSAIL, Google AI Principles, W3C Silver contributors).
-- **Ethics & Safety**: Strict adherence to the [Ethics & Ergonomic Safety Policy](governance/ETHICS_SAFETY_POLICY.md).
-- **Google AI Principles**: Explicit mapping across Fairness, Safety, Accountability, and Scientific Excellence detailed in [AI_PRINCIPLES_ALIGNMENT.md](docs/AI_PRINCIPLES_ALIGNMENT.md).
-
----
-
-## 📜 License
-
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+Licensed under the [Apache License, Version 2.0](LICENSE).

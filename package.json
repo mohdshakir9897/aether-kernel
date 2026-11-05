@@ -1,8 +1,8 @@
 {
-  "name": "aether-ui-monorepo",
+  "name": "aether-kernel",
   "version": "1.0.0",
   "private": true,
-  "description": "Perceptual physics, mathematical anti-convergence linter, and agent directives for post-cliché human-grade software interfaces",
+  "description": "Deterministic Interface Compiler & Spatial Physics Kernel for AI Coding Agents",
   "type": "module",
   "packageManager": "pnpm@10.29.3",
   "scripts": {
@@ -22,7 +22,8 @@
     "ast-linter",
     "agent-directives",
     "vcom",
-    "golden-ratio"
+    "golden-ratio",
+    "aether-kernel"
   ],
   "author": "Aether Open Governance Board",
   "license": "Apache-2.0",
