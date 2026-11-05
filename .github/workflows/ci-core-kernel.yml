@@ -1,0 +1,46 @@
+name: CI Core Kernel & AST Critic
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Hermetic Unit Tests & APCA Matrix Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js & pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.29.3
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'pnpm'
+
+      - name: Install Monorepo Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck Packages
+        run: pnpm --recursive run build
+
+      - name: Verify APCA Math Matrix
+        run: pnpm --filter @aether-ui/core-kernel test
+
+      - name: Run AST Critic Linter Specs
+        run: pnpm --filter @aether-ui/ast-critic test
+
+      - name: Execute Workspace Self-Audit
+        run: node packages/cli/dist/bin/aether.js audit --strict

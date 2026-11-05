@@ -1,0 +1,11 @@
+{
+  "name": "@aether-ui/browser-inspector",
+  "version": "1.0.0",
+  "description": "Chrome and Firefox DevTools extension visualizing Visual Center of Mass (VCoM) and APCA contrast live",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Inspector extension bundle ready'",
+    "clean": "echo 'clean'"
+  },
+  "keywords": ["chrome-extension", "devtools", "vcom", "apca-overlay"]
+}

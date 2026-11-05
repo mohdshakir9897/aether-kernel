@@ -1,0 +1,26 @@
+{
+  "name": "@aether-ui/ast-critic",
+  "version": "1.0.0",
+  "description": "Multi-framework AST linter and rewriter detecting algorithmic AI clichés and enforcing ergonomic human layout physics",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "tsx tests/ast-critic.test.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@aether-ui/core-kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "keywords": ["ast-linter", "code-critic", "anti-cliche", "tailwind-linter", "apca"]
+}

@@ -1,0 +1,17 @@
+(* packages/agent-protocol/grammars/layout-grammar.ebnf *)
+(* Defines mathematically valid layouts; completely eliminates generic AI templates *)
+
+RootLayout ::= HeaderContainer PrimarySplitView FooterContainer
+HeaderContainer ::= "<header " HeaderAttributes ">" (LeftAnchoredBrand NavList ContextualMetadata) "</header>"
+PrimarySplitView ::= "<main class=\"grid " AsymmetricGridColumns " gap-6\">" PrimaryCanvas SecondaryPanel "</main>"
+
+AsymmetricGridColumns ::= "grid-cols-1 lg:grid-cols-12" 
+PrimaryCanvas ::= "<section class=\"lg:col-span-8\">" (InteractiveDataSurface | StructuralViewport) "</section>"
+SecondaryPanel ::= "<aside class=\"lg:col-span-4\">" ContextualInspector "</aside>"
+
+LeftAnchoredBrand ::= "<div class=\"flex items-center gap-3\">" BrandLogo BrandTitle "</div>"
+ContextualMetadata ::= "<div class=\"flex items-center gap-2 font-mono text-xs tabular-nums\">" StatusIndicator MetricTag "</div>"
+
+InteractiveDataSurface ::= "<div class=\"rounded-lg border border-neutral-800 bg-neutral-950/60 p-4\">" (DataTable | CanvasPlot | StreamViewer) "</div>"
+StructuralViewport ::= "<div class=\"flex flex-col gap-4\">" PrimaryArticle DataInsightRow "</div>"
+ContextualInspector ::= "<div class=\"flex flex-col gap-3 rounded-md border border-neutral-800 p-4\">" InspectorHeader ParameterKeyValues "</div>"

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Aether UI Perceptual Inspector",
+  "version": "1.0.0",
+  "description": "Visual Center of Mass (VCoM) live heatmap & APCA ocular strain overlay",
+  "permissions": ["activeTab", "scripting"],
+  "devtools_page": "src/devtools.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/overlay.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

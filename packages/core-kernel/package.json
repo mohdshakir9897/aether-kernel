@@ -1,0 +1,25 @@
+{
+  "name": "@aether-ui/core-kernel",
+  "version": "1.0.0",
+  "description": "Pure mathematical and perceptual physics engine for color, APCA contrast, visual tension, and spatial layout",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "tsx tests/core-kernel.test.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["apca", "oklch", "perceptual-physics", "vcom", "spatial-entropy"],
+  "author": "Aether Open Governance Board",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

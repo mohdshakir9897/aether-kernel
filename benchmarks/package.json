@@ -1,0 +1,17 @@
+{
+  "name": "@aether-ui/benchmarks",
+  "version": "1.0.0",
+  "description": "Automated research suite measuring AI aesthetic convergence and statistical distance from human craft",
+  "type": "module",
+  "scripts": {
+    "test": "tsx runners/convergence-metric.ts",
+    "eval": "tsx runners/human-delta-evaluator.ts"
+  },
+  "dependencies": {
+    "@aether-ui/core-kernel": "workspace:*",
+    "@aether-ui/ast-critic": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}

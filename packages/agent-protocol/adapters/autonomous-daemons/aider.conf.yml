@@ -1,0 +1,7 @@
+# Aider configuration for Aether UI Protocol
+check-update: false
+auto-commits: false
+lint-cmd: "node packages/cli/dist/bin/aether.js audit --strict"
+model: claude-3-5-sonnet-20241022
+edit-format: whole
+auto-lint: true

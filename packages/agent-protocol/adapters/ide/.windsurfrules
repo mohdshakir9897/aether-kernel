@@ -1,0 +1,10 @@
+# Windsurf Rules: Aether Perceptual Physics Directives
+
+Always verify generated UI code against the Aether rule matrix:
+- Banned: AETHER-001 (Floating pill badge)
+- Banned: AETHER-002 (Decorative blur blob)
+- Banned: AETHER-003 (Homogeneous 3-column card grid)
+- Banned: AETHER-004 (Generic AI buzzwords)
+- Banned: AETHER-005 (APCA contrast failure)
+
+Enforce asymmetric golden ratio compositions (`minmax(0, 1.618fr) minmax(0, 1fr)`) and verifiable domain telemetry.

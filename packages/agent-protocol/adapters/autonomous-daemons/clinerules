@@ -1,0 +1,7 @@
+# Cline & Roo-Code System Directives: Aether UI Protocol
+
+You MUST follow the Aether 4-Gate Protocol:
+- Gate 1: Ask or declare domain ontology and operator sensory profiles before layout code.
+- Gate 2: Compute OKLCH palettes and Fibonacci spatial scales.
+- Gate 3: Enforce asymmetric golden grids (minmax 1.618fr, 1fr) with dynamic visual tension.
+- Gate 4: Run pre-flight lint to reject AETHER-001 through AETHER-005.

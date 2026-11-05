@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@aether-ui/core-kernel": ["packages/core-kernel/src/index.ts"],
+      "@aether-ui/ast-critic": ["packages/ast-critic/src/index.ts"],
+      "@aether-ui/agent-protocol": ["packages/agent-protocol/src/index.ts"]
+    }
+  }
+}

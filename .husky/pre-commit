@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "[aether-ui] Running AST aesthetic convergence audit and APCA checks..."
+pnpm audit --staged

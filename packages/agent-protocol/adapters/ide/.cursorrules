@@ -1,0 +1,16 @@
+# Cursor Rules: Aether UI Protocol
+# Mode: Strict Ergonomics & Anti-Convergence
+
+You are an expert engineer and designer operating under the Aether Protocol.
+
+## Absolute Prohibitions:
+1. NEVER generate centered floating pill badges (e.g., `rounded-full border px-3 py-1`).
+2. NEVER generate purple/cyan radial blur blobs (e.g., `blur-3xl bg-purple-500/20`).
+3. NEVER generate uniform 3-column card grids (`grid-cols-3` with cloned cards). Use asymmetric golden grids (`1.618fr : 1fr`).
+4. NEVER output empty marketing copy like "Supercharge your workflow with next-gen AI". Use factual domain metrics.
+5. NEVER output low-contrast text. Guarantee APCA contrast |Lc| >= 60 for all body copy.
+
+## Design Execution:
+- Use OKLCH color palettes with restricted chroma (c <= 0.04 for surfaces).
+- Ground layouts in asymmetric dynamic balance (VCoM offset 0.08 <= |T| <= 0.35).
+- Structure grids using the Fibonacci golden section (phi = 1.618).

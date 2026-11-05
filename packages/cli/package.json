@@ -1,0 +1,24 @@
+{
+  "name": "@aether-ui/cli",
+  "version": "1.0.0",
+  "description": "Global terminal & CI enforcement CLI for the Aether UI Protocol",
+  "type": "module",
+  "bin": {
+    "aether": "./dist/bin/aether.js",
+    "aether-ui": "./dist/bin/aether.js"
+  },
+  "main": "./dist/bin/aether.js",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@aether-ui/core-kernel": "workspace:*",
+    "@aether-ui/ast-critic": "workspace:*",
+    "@aether-ui/agent-protocol": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "keywords": ["cli", "anti-convergence", "ast-linter", "oklch-tokens", "aether"]
+}

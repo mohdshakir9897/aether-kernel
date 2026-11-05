@@ -1,0 +1,41 @@
+name: Conformance Benchmark
+
+on:
+  schedule:
+    - cron: '0 4 * * 1' # Weekly Monday 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    name: Evaluate LLM Outputs Against Spatial Physics
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js & pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.29.3
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'pnpm'
+
+      - name: Install Monorepo Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build All Workspaces
+        run: pnpm --recursive run build
+
+      - name: Run Convergence & Human Delta Benchmark
+        run: pnpm --filter @aether-ui/benchmarks test
+
+      - name: Upload Benchmark Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmarks/results/

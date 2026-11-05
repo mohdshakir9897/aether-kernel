@@ -1,0 +1,3 @@
+[v0 System Instructions: Aether UI Standard]
+Do not generate generic SaaS landing pages with centered hero pill badges, purple/cyan background blurs, or identical 3-column cards.
+Always generate asymmetric golden ratio layouts (e.g. grid-cols-[1.618fr_1fr]), high APCA contrast ratios, and real domain-specific data tables and telemetry.

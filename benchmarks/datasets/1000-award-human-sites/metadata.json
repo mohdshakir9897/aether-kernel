@@ -1,0 +1,15 @@
+{
+  "corpus_name": "1000-award-human-sites",
+  "version": "1.0.0",
+  "description": "Corpus of master human designs (Awwwards Site of the Day, Brutalist websites, high-end editorial archives, Stripe/Linear artisan frontends).",
+  "sample_count": 1000,
+  "top_cliche_frequencies": {
+    "AETHER-001_floating_pill": 0.032,
+    "AETHER-002_blur_blob": 0.041,
+    "AETHER-003_uniform_3col_grid": 0.078,
+    "AETHER-004_buzzword_fluff": 0.025,
+    "AETHER-005_apca_contrast_failure": 0.062
+  },
+  "mean_vcom_tension_magnitude": 0.218,
+  "mean_shannon_spatial_entropy": 3.14
+}

@@ -1,0 +1,34 @@
+{
+  "name": "aether-ui-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Perceptual physics, mathematical anti-convergence linter, and agent directives for post-cliché human-grade software interfaces",
+  "type": "module",
+  "packageManager": "pnpm@10.29.3",
+  "scripts": {
+    "build": "pnpm --recursive run build",
+    "test": "pnpm --recursive run test",
+    "lint": "pnpm --recursive run lint",
+    "audit": "node packages/cli/dist/bin/aether.js audit",
+    "benchmark": "tsx benchmarks/runners/convergence-metric.ts",
+    "clean": "pnpm --recursive run clean"
+  },
+  "keywords": [
+    "oklch",
+    "apca",
+    "design-tokens",
+    "visual-physics",
+    "anti-cliche",
+    "ast-linter",
+    "agent-directives",
+    "vcom",
+    "golden-ratio"
+  ],
+  "author": "Aether Open Governance Board",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^24.11.3",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

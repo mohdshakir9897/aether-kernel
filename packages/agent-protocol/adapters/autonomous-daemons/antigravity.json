@@ -1,0 +1,22 @@
+{
+  "name": "aether-antigravity-adapter",
+  "version": "1.0.0",
+  "description": "Google Antigravity agent lifecycle hooks and anti-convergence rules",
+  "rules": [
+    "AETHER-001-pill-badge",
+    "AETHER-002-blur-blobs",
+    "AETHER-003-uniform-grid",
+    "AETHER-004-semantic-buzz",
+    "AETHER-005-apca-failure"
+  ],
+  "gates": {
+    "gate1_socratic_friction": true,
+    "gate2_token_manifesto": true,
+    "gate3_spatial_composition": true,
+    "gate4_self_healing_loop": true
+  },
+  "hooks": {
+    "pre_tool_call": "node packages/cli/dist/bin/aether.js audit --staged",
+    "post_file_write": "node packages/cli/dist/bin/aether.js fix --file"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "protocol": "aether-v1",
+  "critic": {
+    "command": "node packages/cli/dist/bin/aether.js audit --strict",
+    "autofix": true
+  },
+  "directives": [
+    "packages/agent-protocol/directives/AGENTS.md",
+    "packages/agent-protocol/directives/spatial-composition.md"
+  ]
+}

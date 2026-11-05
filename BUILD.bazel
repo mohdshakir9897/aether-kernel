@@ -1,0 +1,21 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "tsconfig.base.json",
+])
+
+filegroup(
+    name = "all_packages",
+    srcs = [
+        "//packages/core-kernel:pkg",
+        "//packages/ast-critic:pkg",
+        "//packages/agent-protocol:pkg",
+        "//packages/cli:pkg",
+        "//packages/browser-inspector:pkg",
+    ],
+)

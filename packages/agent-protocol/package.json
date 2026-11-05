@@ -1,0 +1,19 @@
+{
+  "name": "@aether-ui/agent-protocol",
+  "version": "1.0.0",
+  "description": "Universal system directives, ontological archetypes, and multi-platform adapters enforcing human layout physics across AI coding agents",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "tsx tests/layout-grammar.test.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["agent-protocol", "system-prompts", "cursorrules", "antigravity", "windsurf", "copilot"],
+  "author": "Aether Open Governance Board",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
