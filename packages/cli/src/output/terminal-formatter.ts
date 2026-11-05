@@ -1,5 +1,5 @@
 /**
- * Terminal Formatter for Aether UI CLI
+ * Terminal Formatter for Aether Kernel CLI
  */
 
 import { LintResult } from '@aether-kernel/ast-critic';
@@ -21,19 +21,21 @@ export const ANSI = {
   bgYellow: '\x1b[43m',
 };
 
-export function formatHeader(): string {
+export function formatHeader(title?: string): string {
+  const line = title || `${ANSI.cyan}${ANSI.bold}▲ AETHER KERNEL // DETERMINISTIC INTERFACE COMPILER${ANSI.reset}`;
   return `
-${ANSI.cyan}${ANSI.bold}▲ AETHER UI // PERCEPTUAL ANTI-CONVERGENCE KERNEL${ANSI.reset}
+${line}
 ${ANSI.dim}─────────────────────────────────────────────────────────────${ANSI.reset}`;
 }
 
 export function formatLintResult(result: LintResult): string {
+  const normFilename = result.filename.replace(/\\/g, '/');
   if (result.diagnostics.length === 0) {
-    return `${ANSI.green}✓${ANSI.reset} ${result.filename} ${ANSI.dim}(0 violations, APCA compliant)${ANSI.reset}`;
+    return `${ANSI.green}✓${ANSI.reset} ${normFilename} ${ANSI.dim}(0 violations, APCA compliant)${ANSI.reset}`;
   }
 
   const lines: string[] = [];
-  lines.push(`\n${ANSI.bold}${result.filename}${ANSI.reset}`);
+  lines.push(`\n${ANSI.bold}${normFilename}${ANSI.reset}`);
 
   for (const diag of result.diagnostics) {
     const badge =

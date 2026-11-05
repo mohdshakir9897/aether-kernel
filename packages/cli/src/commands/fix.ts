@@ -8,44 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fixSource, LintResult } from '@aether-kernel/ast-critic';
 import { formatHeader, ANSI } from '../output/terminal-formatter.js';
-
-const EXTENSIONS = new Set(['.html', '.jsx', '.tsx', '.vue', '.svelte']);
-
-function findTargetFiles(target: string, fileList: string[] = []): string[] {
-  if (!fs.existsSync(target)) return fileList;
-  const stat = fs.statSync(target);
-  if (stat.isFile()) {
-    const ext = path.extname(target).toLowerCase();
-    if (EXTENSIONS.has(ext)) {
-      fileList.push(target);
-    }
-    return fileList;
-  }
-
-  const entries = fs.readdirSync(target, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const fullPath = path.join(target, entry.name);
-    if (entry.isDirectory()) {
-      if (
-        entry.name !== 'node_modules' &&
-        entry.name !== 'dist' &&
-        entry.name !== '.git' &&
-        entry.name !== '.turbo' &&
-        entry.name !== 'build'
-      ) {
-        findTargetFiles(fullPath, fileList);
-      }
-    } else if (entry.isFile()) {
-      const ext = path.extname(entry.name).toLowerCase();
-      if (EXTENSIONS.has(ext)) {
-        fileList.push(fullPath);
-      }
-    }
-  }
-
-  return fileList;
-}
+import { findTargetFiles, getWorkspaceDisplayName } from '../utils/file-discovery.js';
 
 function generateUnifiedDiff(filename: string, original: string, modified: string): string {
   const origLines = original.split('\n');
@@ -83,11 +46,21 @@ export interface RunFixOptions {
 }
 
 export async function runFix(options: RunFixOptions = {}): Promise<number> {
+  const isDefaultWorkspace = !options.target || path.resolve(options.target) === process.cwd();
   const target = options.target ? path.resolve(options.target) : process.cwd();
   const isDryRun = Boolean(options.dryRun);
+  const rawDisplay = isDefaultWorkspace
+    ? getWorkspaceDisplayName(target)
+    : path.relative(process.cwd(), target) || target;
+  const displayName = rawDisplay.replace(/\\/g, '/');
 
-  console.log(formatHeader());
-  console.log(`Analyzing target for auto-fixing: ${target} [${isDryRun ? 'DRY-RUN' : 'WRITE-MODE'}] ...\n`);
+  const titlePrefix = `${ANSI.cyan}${ANSI.bold}▲ AETHER KERNEL${ANSI.reset}`;
+  const actionLabel = isDryRun ? 'Dry-run patching' : 'Auto-fixing';
+  const modeBadge = isDryRun ? '[DRY-RUN]' : '[WRITE-MODE]';
+  const targetLabel = isDefaultWorkspace ? `workspace: ${displayName}` : `target: ${displayName}`;
+
+  console.log(formatHeader(`${titlePrefix} // ${actionLabel} ${targetLabel} ${modeBadge} ...`));
+  console.log('');
 
   if (!fs.existsSync(target)) {
     console.error(`${ANSI.red}Error: Target path not found: ${target}${ANSI.reset}`);
@@ -105,7 +78,7 @@ export async function runFix(options: RunFixOptions = {}): Promise<number> {
 
   for (const filePath of files) {
     const content = fs.readFileSync(filePath, 'utf-8');
-    const relPath = path.relative(process.cwd(), filePath);
+    const relPath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
     const result: LintResult = fixSource(content, { filename: relPath });
 
     if (result.fixedSource && result.fixedSource !== content) {

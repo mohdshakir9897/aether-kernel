@@ -12,16 +12,52 @@ import { runCompileTokens } from '../src/commands/compile-tokens.js';
 import { ANSI } from '../src/output/terminal-formatter.js';
 
 const args = process.argv.slice(2);
-const command = args[0] || 'audit';
 
-function parseFlags(rawArgs: string[]) {
+const KNOWN_COMMANDS = new Set([
+  'audit',
+  'fix',
+  'watch',
+  'init',
+  'compile-tokens',
+  'help',
+  '--help',
+  '-h',
+  'version',
+  '--version',
+  '-v',
+]);
+
+function parseArgs(rawArgs: string[]) {
+  let command = 'audit';
+  let commandArgs = rawArgs;
+
+  if (rawArgs.length > 0) {
+    const first = rawArgs[0];
+    if (first === '-h' || first === '--help' || first === 'help') {
+      command = 'help';
+    } else if (first === '-v' || first === '--version' || first === 'version') {
+      command = 'version';
+    } else if (KNOWN_COMMANDS.has(first)) {
+      command = first;
+      commandArgs = rawArgs.slice(1);
+    } else if (first.startsWith('-')) {
+      command = 'audit';
+      commandArgs = rawArgs;
+    } else {
+      command = 'audit';
+      commandArgs = rawArgs;
+    }
+  }
+
   const flags: Record<string, string | boolean> = {};
-  for (let i = 0; i < rawArgs.length; i++) {
-    const arg = rawArgs[i];
+  const positionals: string[] = [];
+
+  for (let i = 0; i < commandArgs.length; i++) {
+    const arg = commandArgs[i];
     if (arg.startsWith('--')) {
       const key = arg.slice(2);
-      if (i + 1 < rawArgs.length && !rawArgs[i + 1].startsWith('--')) {
-        flags[key] = rawArgs[i + 1];
+      if (i + 1 < commandArgs.length && !commandArgs[i + 1].startsWith('-')) {
+        flags[key] = commandArgs[i + 1];
         i++;
       } else {
         flags[key] = true;
@@ -29,19 +65,24 @@ function parseFlags(rawArgs: string[]) {
     } else if (arg.startsWith('-')) {
       const key = arg.slice(1);
       flags[key] = true;
+    } else {
+      positionals.push(arg);
     }
   }
-  return flags;
+
+  return { command, flags, positionals };
 }
 
-const flags = parseFlags(args.slice(1));
+const { command, flags, positionals } = parseArgs(args);
 
 async function main() {
   switch (command) {
     case 'audit': {
-      const positionalDir = args.slice(1).find((a) => !a.startsWith('-'));
+      const targetDir = typeof flags['dir'] === 'string'
+        ? flags['dir']
+        : positionals[0] || process.cwd();
       const code = await runAudit({
-        targetDir: typeof flags['dir'] === 'string' ? flags['dir'] : positionalDir,
+        targetDir,
         strict: Boolean(flags['strict']),
       });
       process.exit(code);
@@ -49,12 +90,11 @@ async function main() {
     }
 
     case 'fix': {
-      const positionalTarget = args.slice(1).find((a) => !a.startsWith('-'));
       const target = typeof flags['file'] === 'string'
         ? flags['file']
         : typeof flags['dir'] === 'string'
         ? flags['dir']
-        : positionalTarget;
+        : positionals[0] || process.cwd();
 
       const isDryRun = Boolean(flags['dry-run']);
       const isWrite = Boolean(flags['write'] || flags['w'] || !isDryRun);
@@ -69,8 +109,9 @@ async function main() {
     }
 
     case 'watch': {
-      const positionalDir = args.slice(1).find((a) => !a.startsWith('-'));
-      const targetDir = typeof flags['dir'] === 'string' ? flags['dir'] : positionalDir;
+      const targetDir = typeof flags['dir'] === 'string'
+        ? flags['dir']
+        : positionals[0] || process.cwd();
       await runWatch({ targetDir });
       break;
     }
@@ -91,6 +132,12 @@ async function main() {
       break;
     }
 
+    case 'version': {
+      console.log(`@aether-kernel/cli v1.0.0`);
+      process.exit(0);
+      break;
+    }
+
     case '--help':
     case '-h':
     case 'help': {
@@ -98,16 +145,20 @@ async function main() {
 ${ANSI.cyan}${ANSI.bold}Aether Kernel CLI${ANSI.reset} - Deterministic Interface Compiler & Spatial Physics Kernel
 
 ${ANSI.bold}Usage:${ANSI.reset}
-  npx aether-kernel <command> [target] [options]
+  npx aether-kernel [command] [path] [options]
 
 ${ANSI.bold}Commands:${ANSI.reset}
   audit [path]      Scans workspace or target directory for AI visual clichés & APCA failures
+                    (defaults to current working directory: .)
                     Options: --dir <path>, --strict
 
   fix [path]        Recursively auto-patches AST nodes to human layout
-                    Options: --dry-run, --write (-w), --file <path>
+                    (defaults to current working directory: .)
+                    Options: --dry-run, --write (-w), --file <path>, --dir <path>
 
   watch [dir]       Runs daemon watching for AI agent edits and auto-patching instantaneously
+                    (defaults to current working directory: .)
+                    Options: --dir <path>
 
   init              Injects Aether adapters (.cursorrules, .windsurfrules, antigravity.json)
 

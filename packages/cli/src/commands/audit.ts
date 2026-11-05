@@ -6,49 +6,34 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { lintSource, LintResult } from '@aether-kernel/ast-critic';
-import { formatHeader, formatLintResult, formatSummary } from '../output/terminal-formatter.js';
+import { formatHeader, formatLintResult, formatSummary, ANSI } from '../output/terminal-formatter.js';
+import { findTargetFiles, getWorkspaceDisplayName } from '../utils/file-discovery.js';
 
-const EXTENSIONS = new Set(['.html', '.jsx', '.tsx', '.vue', '.svelte']);
-
-function findTargetFiles(target: string, fileList: string[] = []): string[] {
-  if (!fs.existsSync(target)) return fileList;
-  const stat = fs.statSync(target);
-  if (stat.isFile()) {
-    const ext = path.extname(target).toLowerCase();
-    if (EXTENSIONS.has(ext)) {
-      fileList.push(target);
-    }
-    return fileList;
-  }
-
-  const entries = fs.readdirSync(target, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const fullPath = path.join(target, entry.name);
-    if (entry.isDirectory()) {
-      if (
-        entry.name !== 'node_modules' &&
-        entry.name !== 'dist' &&
-        entry.name !== '.git' &&
-        entry.name !== '.turbo'
-      ) {
-        findTargetFiles(fullPath, fileList);
-      }
-    } else if (entry.isFile()) {
-      const ext = path.extname(entry.name).toLowerCase();
-      if (EXTENSIONS.has(ext)) {
-        fileList.push(fullPath);
-      }
-    }
-  }
-
-  return fileList;
+export interface RunAuditOptions {
+  targetDir?: string;
+  strict?: boolean;
 }
 
-export async function runAudit(args: { targetDir?: string; strict?: boolean }): Promise<number> {
+export async function runAudit(args: RunAuditOptions = {}): Promise<number> {
+  const isDefaultWorkspace = !args.targetDir || path.resolve(args.targetDir) === process.cwd();
   const targetDir = args.targetDir ? path.resolve(args.targetDir) : process.cwd();
-  console.log(formatHeader());
-  console.log(`Scanning target: ${targetDir} ...\n`);
+  const rawDisplay = isDefaultWorkspace
+    ? getWorkspaceDisplayName(targetDir)
+    : path.relative(process.cwd(), targetDir) || targetDir;
+  const displayName = rawDisplay.replace(/\\/g, '/');
+
+  const titlePrefix = `${ANSI.cyan}${ANSI.bold}▲ AETHER KERNEL${ANSI.reset}`;
+  const headerSubtitle = isDefaultWorkspace
+    ? `Scanning workspace: ${displayName} ...`
+    : `Scanning target: ${displayName} ...`;
+
+  console.log(formatHeader(`${titlePrefix} // ${headerSubtitle}`));
+  console.log('');
+
+  if (!fs.existsSync(targetDir)) {
+    console.error(`${ANSI.red}Error: Target path not found: ${targetDir}${ANSI.reset}`);
+    return 1;
+  }
 
   const files = findTargetFiles(targetDir);
   if (files.length === 0) {
@@ -62,7 +47,7 @@ export async function runAudit(args: { targetDir?: string; strict?: boolean }): 
 
   for (const filePath of files) {
     const content = fs.readFileSync(filePath, 'utf-8');
-    const relPath = path.relative(process.cwd(), filePath);
+    const relPath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
     const result = lintSource(content, { filename: relPath });
 
     results.push(result);

@@ -8,14 +8,27 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fixSource, LintResult } from '@aether-kernel/ast-critic';
 import { formatHeader, ANSI } from '../output/terminal-formatter.js';
+import {
+  getWorkspaceDisplayName,
+  loadGitIgnoreRules,
+  isIgnored,
+  SUPPORTED_EXTENSIONS,
+} from '../utils/file-discovery.js';
 
-const EXTENSIONS = new Set(['.html', '.jsx', '.tsx', '.vue', '.svelte']);
+export interface RunWatchOptions {
+  targetDir?: string;
+}
 
-export async function runWatch(args: { targetDir?: string }): Promise<void> {
+export async function runWatch(args: RunWatchOptions = {}): Promise<void> {
+  const isDefaultWorkspace = !args.targetDir || path.resolve(args.targetDir) === process.cwd();
   const targetDir = args.targetDir ? path.resolve(args.targetDir) : process.cwd();
+  const rawDisplay = isDefaultWorkspace
+    ? getWorkspaceDisplayName(targetDir)
+    : path.relative(process.cwd(), targetDir) || targetDir;
+  const displayName = rawDisplay.replace(/\\/g, '/');
 
-  console.log(formatHeader());
-  console.log(`${ANSI.cyan}${ANSI.bold}[AETHER WATCH DAEMON ACTIVE]${ANSI.reset}`);
+  const titlePrefix = `${ANSI.cyan}${ANSI.bold}▲ AETHER KERNEL${ANSI.reset}`;
+  console.log(formatHeader(`${titlePrefix} // Watch daemon active: ${displayName}`));
   console.log(`Monitoring directory: ${targetDir}`);
   console.log(`Auto-patching AI agent output instantaneously for [.tsx, .jsx, .html, .vue, .svelte]...`);
   console.log(`${ANSI.dim}Press Ctrl+C to terminate.${ANSI.reset}\n`);
@@ -25,13 +38,14 @@ export async function runWatch(args: { targetDir?: string }): Promise<void> {
     process.exit(1);
   }
 
+  const rules = loadGitIgnoreRules(targetDir);
   // Debounce tracking to prevent re-entrant loops on in-place file write
   const debounceMap = new Map<string, number>();
 
   const processFile = (filePath: string) => {
     const ext = path.extname(filePath).toLowerCase();
-    if (!EXTENSIONS.has(ext)) return;
-    if (filePath.includes('node_modules') || filePath.includes('dist') || filePath.includes('.git')) return;
+    if (!SUPPORTED_EXTENSIONS.has(ext)) return;
+    if (isIgnored(filePath, false, rules)) return;
 
     const now = Date.now();
     const last = debounceMap.get(filePath) || 0;
@@ -41,7 +55,7 @@ export async function runWatch(args: { targetDir?: string }): Promise<void> {
     try {
       if (!fs.existsSync(filePath)) return;
       const content = fs.readFileSync(filePath, 'utf-8');
-      const relPath = path.relative(process.cwd(), filePath);
+      const relPath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
       const result: LintResult = fixSource(content, { filename: relPath });
 
       if (result.fixedSource && result.fixedSource !== content) {
