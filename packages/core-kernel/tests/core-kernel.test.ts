@@ -109,7 +109,26 @@ console.log('🧪 Running @aether-ui/core-kernel hermetic tests...');
   assert.strictEqual(context.domain, 'devtools-infra', 'Should infer devtools-infra domain');
   assert.strictEqual(context.density, 'compact', 'Should infer compact density for devtools');
   assert(context.primaryEntities.includes('PipelineExecution'), 'Primary entities should include inferred models');
-  console.log('  ✓ Telemetry context inference (Prisma / OpenAPI / Package.json) validated');
+
+  // Edge cases: Empty file maps, empty strings, invalid json must not crash
+  const emptyFiles = {
+    'package.json': '',
+    'schema.prisma': '',
+    'openapi.json': '{ invalid json }',
+  };
+  const emptyModels = extractSchemaModels(emptyFiles);
+  assert(Array.isArray(emptyModels), 'Should return array on empty files');
+  assert.strictEqual(emptyModels.length, 0);
+
+  const emptyContext = inferWorkspaceContext(emptyFiles);
+  assert.strictEqual(emptyContext.domain, 'general-b2b');
+  assert.strictEqual(emptyContext.density, 'balanced');
+  assert.strictEqual(emptyContext.primaryEntities.length, 3);
+
+  const nullContext = inferWorkspaceContext({} as any);
+  assert.strictEqual(nullContext.domain, 'general-b2b');
+
+  console.log('  ✓ Telemetry context inference (Prisma / OpenAPI / Package.json) & empty file safety validated');
 }
 
 // 8. Rendered Spatial Physics & Slop Discriminator Tests

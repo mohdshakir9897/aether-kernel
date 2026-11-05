@@ -1,5 +1,5 @@
 import assert from 'node:assert';
-import { lintSource, fixSource } from '../src/index.js';
+import { lintSource, fixSource, evaluateRenderedPhysics } from '../src/index.js';
 
 console.log('🧪 Running @aether-ui/ast-critic hermetic tests...');
 
@@ -64,6 +64,42 @@ console.log('🧪 Running @aether-ui/ast-critic hermetic tests...');
   assert(fixed.fixedSource, 'Fixer should return patched source');
   assert(!fixed.fixedSource.includes('Supercharge your workflow'), 'Buzzwords should be replaced');
   console.log('  ✓ Automated AST node patcher and copy synthesizer verified');
+}
+
+// 7. Test Pixel & Spatial Physics Evaluator (Edge Cases & Slop Discriminator)
+{
+  // Edge Case: Zero / Negative area boxes should NOT produce NaN
+  const zeroBoxes = [
+    { left: 0, top: 0, width: 0, height: 10 },
+    { left: 0, top: 0, width: -5, height: 10 },
+  ];
+  const zeroEval = evaluateRenderedPhysics(zeroBoxes);
+  assert(!Number.isNaN(zeroEval.entropy), 'Entropy must not be NaN for zero/negative area boxes');
+  assert(!Number.isNaN(zeroEval.energy), 'Energy must not be NaN');
+  assert.strictEqual(zeroEval.isSlop, false);
+
+  // Slop layout: Symmetry > 0.94 and low entropy < 1.8
+  const centeredSlop = [
+    { left: 0.3, top: 0.1, width: 0.4, height: 0.1 },
+    { left: 0.25, top: 0.25, width: 0.5, height: 0.2 },
+    { left: 0.3, top: 0.5, width: 0.4, height: 0.15 },
+  ];
+  const slopEval = evaluateRenderedPhysics(centeredSlop);
+  assert(slopEval.symmetry > 0.94, `Expected symmetry > 0.94, got ${slopEval.symmetry}`);
+  assert(slopEval.entropy < 1.8, `Expected entropy < 1.8, got ${slopEval.entropy}`);
+  assert.strictEqual(slopEval.isSlop, true, 'Must flag symmetry > 0.94 and entropy < 1.8 as slop');
+  assert(slopEval.violations.length > 0);
+
+  // Asymmetric dynamic tension layout: Symmetry <= 0.94
+  const asymmetricLayout = [
+    { left: 0.05, top: 0.1, width: 0.5, height: 0.6 },
+    { left: 0.05, top: 0.75, width: 0.5, height: 0.2 },
+    { left: 0.6, top: 0.1, width: 0.35, height: 0.3 },
+  ];
+  const humanEval = evaluateRenderedPhysics(asymmetricLayout);
+  assert.strictEqual(humanEval.isSlop, false, 'Asymmetric layout must not be flagged as slop');
+  assert(humanEval.symmetry <= 0.94, 'Asymmetric layout must have symmetry <= 0.94');
+  console.log('  ✓ Pixel evaluator handles zero/negative area edge cases and VCoM slop thresholds');
 }
 
 console.log('🎉 All @aether-ui/ast-critic tests passed successfully!\n');

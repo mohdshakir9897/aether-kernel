@@ -27,6 +27,7 @@ export * from './rules/AETHER-004-semantic-buzz.js';
 export * from './rules/AETHER-005-apca-failure.js';
 export * from './fixer/ast-rewriter.js';
 export * from './fixer/copy-synthesizer.js';
+export * from './physics/pixel-evaluator.js';
 
 export interface LintOptions {
   filename?: string;

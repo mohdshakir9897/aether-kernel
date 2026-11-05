@@ -11,11 +11,12 @@ export interface InferredDomainContext {
 }
 
 export function extractSchemaModels(projectFiles: Record<string, string>): string[] {
+  if (!projectFiles || typeof projectFiles !== 'object') return [];
   const models = new Set<string>();
 
   // 1. Prisma schema model extraction (model <Name> {)
   const prismaContent = Object.entries(projectFiles)
-    .filter(([path]) => path.endsWith('.prisma'))
+    .filter(([path, content]) => typeof path === 'string' && path.endsWith('.prisma') && typeof content === 'string')
     .map(([, content]) => content)
     .join('\n');
 
@@ -28,7 +29,7 @@ export function extractSchemaModels(projectFiles: Record<string, string>): strin
 
   // 2. Drizzle schema extraction (export const <name> = pgTable|sqliteTable|mysqlTable)
   for (const [path, content] of Object.entries(projectFiles)) {
-    if (path.includes('schema') && (path.endsWith('.ts') || path.endsWith('.js'))) {
+    if (typeof path === 'string' && path.includes('schema') && (path.endsWith('.ts') || path.endsWith('.js')) && typeof content === 'string') {
       const drizzleMatches = content.matchAll(
         /export\s+const\s+([A-Za-z0-9_]+)\s*=\s*(?:pgTable|sqliteTable|mysqlTable)\s*\(/g
       );
@@ -40,7 +41,7 @@ export function extractSchemaModels(projectFiles: Record<string, string>): strin
 
   // 3. OpenAPI / JSON schema entity extraction
   for (const [path, content] of Object.entries(projectFiles)) {
-    if (path.includes('openapi') || path.includes('swagger') || path.endsWith('schema.json')) {
+    if (typeof path === 'string' && (path.includes('openapi') || path.includes('swagger') || path.endsWith('schema.json')) && typeof content === 'string') {
       try {
         const parsed = JSON.parse(content);
         const schemas = parsed.components?.schemas || parsed.definitions || {};
@@ -55,7 +56,15 @@ export function extractSchemaModels(projectFiles: Record<string, string>): strin
 }
 
 export function inferWorkspaceContext(projectFiles: Record<string, string>): InferredDomainContext {
-  const pkgJson = projectFiles['package.json'] || '';
+  if (!projectFiles || typeof projectFiles !== 'object') {
+    return {
+      domain: 'general-b2b',
+      density: 'balanced',
+      primaryEntities: ['Metric', 'Record', 'Session'],
+    };
+  }
+
+  const pkgJson = typeof projectFiles['package.json'] === 'string' ? projectFiles['package.json'] : '';
   const hasPrisma = Object.keys(projectFiles).some((p) => p.endsWith('.prisma'));
   const schemaContent = hasPrisma
     ? Object.entries(projectFiles).find(([p]) => p.endsWith('.prisma'))?.[1] || ''
